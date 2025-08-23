@@ -1,0 +1,10 @@
+{
+    "chat.mcp.serverSampling": {
+        "krypop/.vscode/mcp.json: fetch": {
+            "allowedModels": [
+                "github.copilot-chat/gpt-4.1",
+                "github.copilot-chat/gpt-4o"
+            ]
+        }
+    }
+}
