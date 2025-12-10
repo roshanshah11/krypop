@@ -20,8 +20,9 @@ export default function Newsletter() {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     toast({
-      title: "Welcome to the KRYpop family! 🌶️",
-      description: "You'll be the first to know about new flavors and exclusive deals.",
+      title: "Welcome to the squad! 🌶️",
+      description: "Use code SPICY20 for 10% off your first order!",
+      duration: 6000,
     })
 
     setEmail("")
@@ -34,8 +35,7 @@ export default function Newsletter() {
         <div className="max-w-2xl mx-auto text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">Join the Spice Squad</h2>
           <p className="text-lg mb-8 opacity-90">
-            Get early access to new flavors, exclusive deals, and behind-the-scenes content. Plus, 10% off your first
-            order!
+            Get early access to new flavors, exclusive deals, and behind-the-scenes content.
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -50,9 +50,9 @@ export default function Newsletter() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="bg-white text-krypop-red hover:bg-gray-100 font-semibold"
+              className="bg-white text-krypop-red hover:bg-gray-100 font-bold px-8"
             >
-              {isLoading ? "Joining..." : "Join Now"}
+              {isLoading ? "Joining..." : "Get 10% Off"}
             </Button>
           </form>
 

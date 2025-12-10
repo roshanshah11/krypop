@@ -86,14 +86,7 @@ export default function FeaturedProducts() {
 	return (
 		<section className="py-16">
 			<div className="container mx-auto px-4">
-				<div className="mb-8 text-right">
-					<Link
-						href="/about"
-						className="text-krypop-yellow underline hover:text-krypop-red"
-					>
-						Our Story
-					</Link>
-				</div>
+
 
 				{/* Section Header */}
 				<div className="text-center mb-16">
@@ -156,11 +149,10 @@ export default function FeaturedProducts() {
 									onClick={() => toggleFavorite(product.id)}
 								>
 									<Heart
-										className={`h-4 w-4 ${
-											favorites.includes(product.id)
+										className={`h-4 w-4 ${favorites.includes(product.id)
 												? "fill-krypop-red text-krypop-red"
 												: "text-gray-600"
-										}`}
+											}`}
 									/>
 								</Button>
 
@@ -197,11 +189,10 @@ export default function FeaturedProducts() {
 										{[...Array(5)].map((_, i) => (
 											<Star
 												key={`${product.id}-star-${i}`}
-												className={`h-4 w-4 ${
-													i < Math.floor(product.rating)
+												className={`h-4 w-4 ${i < Math.floor(product.rating)
 														? "fill-krypop-yellow text-krypop-yellow"
 														: "text-gray-300"
-												}`}
+													}`}
 											/>
 										))}
 									</div>

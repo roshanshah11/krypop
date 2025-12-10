@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: "Bold flavors that fuse cultures. Try our signature Spicy Sweet Fusion and more.",
     type: "website",
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -33,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable}`}>
+    <html lang="en" className={`${poppins.variable}`} suppressHydrationWarning>
       <body className={`${inter.className} font-sans`}>
         {/* Google tag (gtag.js) */}
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-W3PT1Z1YT5" strategy="afterInteractive" />

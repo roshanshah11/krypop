@@ -99,7 +99,7 @@ const allProducts = [
 }))
 
 interface ProductGridProps {
-  initialCategory?: string;
+	initialCategory?: string;
 }
 
 export default function ProductGrid({ initialCategory = "all" }: Readonly<ProductGridProps> = {}) {
@@ -294,11 +294,10 @@ export default function ProductGrid({ initialCategory = "all" }: Readonly<Produc
 									onClick={() => toggleFavorite(product.id)}
 								>
 									<Heart
-										className={`h-4 w-4 ${
-											favorites.includes(product.id)
-												? "fill-krypop-red text-krypop-red"
-												: "text-gray-600"
-										}`}
+										className={`h-4 w-4 ${favorites.includes(product.id)
+											? "fill-krypop-red text-krypop-red"
+											: "text-gray-600"
+											}`}
 									/>
 								</Button>
 
@@ -320,24 +319,32 @@ export default function ProductGrid({ initialCategory = "all" }: Readonly<Produc
 							{/* Product Info */}
 							<div className="space-y-3">
 								<div>
-									<h3 className="font-bold text-lg text-krypop-dark group-hover:text-krypop-red transition-colors flex items-center gap-2">
-										{product.name}
-										<span className="ml-2 px-2 py-0.5 rounded-full bg-krypop-yellow text-xs font-semibold text-krypop-dark border border-krypop-yellow/40">
+									<div className="flex justify-between items-start">
+										<h3 className="font-bold text-lg text-krypop-dark group-hover:text-krypop-red transition-colors">
+											{product.name}
+										</h3>
+										<span className="px-2 py-0.5 rounded-full bg-krypop-yellow text-xs font-semibold text-krypop-dark border border-krypop-yellow/40 whitespace-nowrap ml-2">
 											{product.id === "krypop-flight" ? "15oz" : "3oz"}
 										</span>
-									</h3>
+									</div>
+
+									{/* Badges next to name/description area */}
+									<div className="flex flex-wrap gap-1 mt-1 mb-2">
+										{product.tags.slice(0, 2).map((tag) => (
+											<Badge key={tag} variant="secondary" className="text-[10px] px-1.5 h-5 bg-gray-100 text-gray-600 hover:bg-gray-200">
+												{tag}
+											</Badge>
+										))}
+										{product.featured && (
+											<Badge className="text-[10px] px-1.5 h-5 bg-krypop-red/10 text-krypop-red hover:bg-krypop-red/20 border-0">
+												Bestseller
+											</Badge>
+										)}
+									</div>
+
 									<p className="text-sm text-gray-600 line-clamp-2">
 										{product.description}
 									</p>
-								</div>
-
-								{/* Tags */}
-								<div className="flex flex-wrap gap-1">
-									{product.tags.slice(0, 2).map((tag) => (
-										<Badge key={tag} variant="secondary" className="text-xs">
-											{tag}
-										</Badge>
-									))}
 								</div>
 
 								{/* Rating */}
@@ -346,36 +353,30 @@ export default function ProductGrid({ initialCategory = "all" }: Readonly<Produc
 										{[...Array(5)].map((_, i) => (
 											<Star
 												key={`star-rating-${product.id}-${i}`}
-												className={`h-4 w-4 ${
-													i < Math.floor(product.rating)
-														? "fill-krypop-yellow text-krypop-yellow"
-														: "text-gray-300"
-												}`}
+												className={`h-3.5 w-3.5 ${i < Math.floor(product.rating)
+													? "fill-krypop-yellow text-krypop-yellow"
+													: "text-gray-300"
+													}`}
 											/>
 										))}
 									</div>
-									<span className="text-sm text-gray-600">
-										{product.rating} ({product.reviews})
+									<span className="text-xs text-gray-500">
+										({product.reviews})
 									</span>
 								</div>
 
 								{/* Price & Actions */}
-								<div className="flex items-center justify-between pt-2">
+								<div className="flex items-center justify-between pt-2 gap-3">
 									<span className="text-xl font-bold text-krypop-red">
 										${product.price.toFixed(2)}
 									</span>
-									<div className="flex space-x-2">
-										{/* <Button variant="outline" size="sm" disabled title="Coming soon" className="opacity-60 cursor-not-allowed">
-											View
-										</Button> */}
-										<Button
-											size="sm"
-											className="krypop-gradient text-white"
-											onClick={() => addToCart(product)}
-										>
-											Add to Cart
-										</Button>
-									</div>
+									<Button
+										size="sm"
+										className="krypop-gradient text-white flex-1 shadow-md hover:shadow-lg transition-all"
+										onClick={() => addToCart(product)}
+									>
+										Add to Cart
+									</Button>
 								</div>
 							</div>
 						</motion.div>

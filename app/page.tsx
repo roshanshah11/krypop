@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   },
 }
 
+import HowItWorks from "@/components/how-it-works"
+import ReviewsStrip from "@/components/reviews-strip"
+
 export default function Home() {
   // Breadcrumb JSON-LD structured data
   const breadcrumbJsonLd = {
@@ -31,6 +34,8 @@ export default function Home() {
         <Header />
         {/* No breadcrumb UI on home page */}
         <Hero />
+        <HowItWorks />
+        <ReviewsStrip />
         <FeaturedProducts />
         <Newsletter />
         <Footer />

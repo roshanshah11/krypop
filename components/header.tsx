@@ -26,11 +26,13 @@ export default function Header() {
             <Link href="/" className="text-krypop-dark hover:text-krypop-red transition-colors font-medium">
               Home
             </Link>
-            <Link href="/shop" className="text-krypop-dark hover:text-krypop-red transition-colors font-medium">
-              Shop
+            <Link href="/shop">
+              <Button variant="default" className="bg-krypop-red hover:bg-krypop-dark text-white font-semibold shadow-md hover:shadow-lg transition-all">
+                Shop
+              </Button>
             </Link>
             <Link href="/about" className="text-krypop-dark hover:text-krypop-red transition-colors font-medium">
-              About
+              Our Story
             </Link>
             <Link href="/contact" className="text-krypop-dark hover:text-krypop-red transition-colors font-medium">
               Contact
@@ -65,7 +67,7 @@ export default function Header() {
               Shop
             </Link>
             <Link href="/about" className="text-krypop-dark text-lg py-2 rounded hover:bg-krypop-yellow/10 transition-colors font-medium">
-              About
+              Our Story
             </Link>
             <Link href="/contact" className="text-krypop-dark text-lg py-2 rounded hover:bg-krypop-yellow/10 transition-colors font-medium">
               Contact

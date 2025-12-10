@@ -40,7 +40,7 @@ export default function CheckoutForm() {
       setDiscount(subtotal * 0.2)
       toast({
         title: "Promo code applied! 🌶️",
-        description: "You saved 20% on your order!",
+        description: "You saved 20% on your order! That's hot!",
       })
     } else {
       toast({
@@ -53,7 +53,7 @@ export default function CheckoutForm() {
 
   const validateForm = () => {
     if (!form.firstName || !form.lastName || !form.email || !form.address || !form.city || !form.state || !form.zip) {
-      setFormError("Please fill out all required fields.")
+      setFormError("Please fill out all required fields to get your popcorn popping!")
       return false
     }
     setFormError("")
@@ -131,9 +131,10 @@ export default function CheckoutForm() {
           className="py-20"
         >
           <div className="container mx-auto px-4 text-center">
+            <div className="text-6xl mb-4">🍿</div>
             <h2 className="text-3xl font-bold mb-4">Your cart is empty</h2>
             <p className="text-gray-600 mb-8">Add some spicy goodness to get started!</p>
-            <Button className="krypop-gradient text-white">Continue Shopping</Button>
+            <Button className="krypop-gradient text-white shadow-lg shadow-krypop-red/20 hover:scale-105 transition-transform">Continue Shopping</Button>
           </div>
         </motion.section>
       ) : (
@@ -144,109 +145,129 @@ export default function CheckoutForm() {
           className="py-12"
         >
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold font-poppins text-center mb-12">
-              Checkout
+            <h2 className="text-3xl font-bold font-poppins text-center mb-12 flex items-center justify-center gap-3">
+              <span>🍿</span> Checkout <span>🌽</span>
             </h2>
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Checkout Form */}
               <motion.div layout className="space-y-8">
                 <form className="space-y-6" onSubmit={handleStripeCheckout}>
                   {/* Contact Information */}
-                  <motion.div layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="bg-white rounded-lg p-6">
-                    <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
+                  <motion.div layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                      <span>👤</span> Contact Information
+                    </h2>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="firstName">First Name</Label>
-                        <Input id="firstName" required value={form.firstName} onChange={e => setForm(f => ({ ...f, firstName: e.target.value }))} />
+                        <Input id="firstName" required value={form.firstName} onChange={e => setForm(f => ({ ...f, firstName: e.target.value }))} className="focus:ring-krypop-red focus:border-krypop-red" />
                       </div>
                       <div>
                         <Label htmlFor="lastName">Last Name</Label>
-                        <Input id="lastName" required value={form.lastName} onChange={e => setForm(f => ({ ...f, lastName: e.target.value }))} />
+                        <Input id="lastName" required value={form.lastName} onChange={e => setForm(f => ({ ...f, lastName: e.target.value }))} className="focus:ring-krypop-red focus:border-krypop-red" />
                       </div>
                       <div className="col-span-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />
+                        <Input id="email" type="email" required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} className="focus:ring-krypop-red focus:border-krypop-red" />
                       </div>
                     </div>
                   </motion.div>
                   {/* Shipping Address */}
-                  <motion.div layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white rounded-lg p-6">
-                    <h2 className="text-xl font-semibold mb-4">Shipping Address</h2>
+                  <motion.div layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                    <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                      <span>🚚</span> Shipping Address
+                    </h2>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="col-span-2">
                         <Label htmlFor="address">Address</Label>
-                        <Input id="address" required value={form.address} onChange={e => setForm(f => ({ ...f, address: e.target.value }))} />
+                        <Input id="address" required value={form.address} onChange={e => setForm(f => ({ ...f, address: e.target.value }))} className="focus:ring-krypop-red focus:border-krypop-red" />
                       </div>
                       <div>
                         <Label htmlFor="city">City</Label>
-                        <Input id="city" required value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} />
+                        <Input id="city" required value={form.city} onChange={e => setForm(f => ({ ...f, city: e.target.value }))} className="focus:ring-krypop-red focus:border-krypop-red" />
                       </div>
                       <div>
                         <Label htmlFor="state">State</Label>
-                        <Input id="state" required value={form.state} onChange={e => setForm(f => ({ ...f, state: e.target.value }))} />
+                        <Input id="state" required value={form.state} onChange={e => setForm(f => ({ ...f, state: e.target.value }))} className="focus:ring-krypop-red focus:border-krypop-red" />
                       </div>
                       <div className="col-span-2">
                         <Label htmlFor="zip">ZIP Code</Label>
-                        <Input id="zip" required value={form.zip} onChange={e => setForm(f => ({ ...f, zip: e.target.value }))} />
+                        <Input id="zip" required value={form.zip} onChange={e => setForm(f => ({ ...f, zip: e.target.value }))} className="focus:ring-krypop-red focus:border-krypop-red" />
                       </div>
                     </div>
                   </motion.div>
                   {/* Promo Code */}
-                  <motion.div layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="bg-white rounded-lg p-6 flex items-center gap-4">
+                  <motion.div layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
                     <Input
-                      placeholder="Promo code"
+                      placeholder="Promo code (try SPICY20)"
                       value={promoCode}
                       onChange={e => setPromoCode(e.target.value)}
-                      className="flex-1"
+                      className="flex-1 focus:ring-krypop-red focus:border-krypop-red"
                     />
-                    <Button type="button" variant="outline" onClick={applyPromoCode}>
+                    <Button type="button" variant="outline" onClick={applyPromoCode} className="hover:text-krypop-red hover:border-krypop-red">
                       Apply
                     </Button>
                   </motion.div>
-                  {formError && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-600 text-sm">{formError}</motion.div>}
+                  {formError && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-600 text-sm font-medium bg-red-50 p-3 rounded-lg">⚠️ {formError}</motion.div>}
                   <motion.div layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
                     <Button
                       type="submit"
-                      className="krypop-gradient text-white w-full"
+                      className="krypop-gradient text-white w-full h-12 text-lg font-bold shadow-lg shadow-krypop-red/25 hover:scale-[1.02] active:scale-[0.98] transition-all"
                       disabled={isProcessing}
                     >
-                      {isProcessing ? "Processing..." : "Pay with Card"}
+                      {isProcessing ? (
+                        <span className="flex items-center gap-2">
+                          <motion.span
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          >
+                            🍿
+                          </motion.span>
+                          Processing...
+                        </span>
+                      ) : (
+                        "Pay with Card 💳"
+                      )}
                     </Button>
                   </motion.div>
                 </form>
               </motion.div>
               {/* Order Summary */}
-              <motion.div layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="bg-white rounded-lg p-6 space-y-4">
-                <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
-                <ul className="divide-y divide-gray-200 mb-4">
+              <motion.div layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 space-y-4 h-fit sticky top-24">
+                <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                  <span>🧾</span> Order Summary
+                </h2>
+                <ul className="divide-y divide-gray-100 mb-4">
                   {state.items.map(item => (
-                    <motion.li layout key={item.id} className="py-2 flex justify-between items-center">
-                      <span>{item.name} x{item.quantity}</span>
-                      <span>${(item.price * item.quantity).toFixed(2)}</span>
+                    <motion.li layout key={item.id} className="py-3 flex justify-between items-center">
+                      <span className="text-gray-700">{item.name} <span className="text-gray-400 text-sm">x{item.quantity}</span></span>
+                      <span className="font-medium">${(item.price * item.quantity).toFixed(2)}</span>
                     </motion.li>
                   ))}
                 </ul>
-                <div className="flex justify-between text-sm">
-                  <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span>Shipping</span>
-                  <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span>Tax</span>
-                  <span>${tax.toFixed(2)}</span>
-                </div>
-                {discount > 0 && (
-                  <div className="flex justify-between text-sm text-green-600">
-                    <span>Discount</span>
-                    <span>- ${discount.toFixed(2)}</span>
+                <div className="space-y-2 pt-4 border-t border-dashed">
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>Subtotal</span>
+                    <span>${subtotal.toFixed(2)}</span>
                   </div>
-                )}
-                <div className="flex justify-between font-bold text-lg">
-                  <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>Shipping</span>
+                    <span>{shipping === 0 ? "Free 🚚" : `$${shipping.toFixed(2)}`}</span>
+                  </div>
+                  <div className="flex justify-between text-sm text-gray-600">
+                    <span>Tax</span>
+                    <span>${tax.toFixed(2)}</span>
+                  </div>
+                  {discount > 0 && (
+                    <div className="flex justify-between text-sm text-green-600 font-medium">
+                      <span>Discount (SPICY20)</span>
+                      <span>- ${discount.toFixed(2)}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between font-bold text-xl pt-4 border-t">
+                    <span>Total</span>
+                    <span className="text-krypop-red">${total.toFixed(2)}</span>
+                  </div>
                 </div>
               </motion.div>
             </div>

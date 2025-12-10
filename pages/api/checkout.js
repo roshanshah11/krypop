@@ -84,18 +84,23 @@ export default async function handler(req, res) {
     });
   }
 
-  // Subtract discount as a negative line item if present and > 0
+  let discounts = [];
+  // Handle discount using Stripe Coupons
   if (discount && Number(discount) > 0) {
-    line_items.push({
-      price_data: {
+    try {
+      // Create a coupon for the discount amount
+      const coupon = await stripe.coupons.create({
+        amount_off: Math.round(Number(discount) * 100),
         currency: 'usd',
-        product_data: {
-          name: 'Discount',
-        },
-        unit_amount: -Math.round(Number(discount) * 100), // negative cents
-      },
-      quantity: 1,
-    });
+        duration: 'once',
+        name: 'Promo Discount',
+      });
+      discounts.push({ coupon: coupon.id });
+    } catch (error) {
+      console.error("Error creating discount coupon:", error);
+      // Fallback or ignore if coupon creation fails, but log it.
+      // In a real app, you might want to return an error or handle this more gracefully.
+    }
   }
 
   try {
@@ -103,6 +108,7 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
+      discounts: discounts.length > 0 ? discounts : undefined,
       success_url: `${req.headers.origin}/checkout?success=1`,
       cancel_url: `${req.headers.origin}/checkout?canceled=1`,
       metadata: metadata || {},
